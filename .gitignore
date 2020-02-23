@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+
+# Distribution / packaging
+.Python
+/env/
+/build/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+,cover
+.cache
+nosetests.xml
+coverage.xml
+
+
+# Project specific ignores
+*.swp
+*.bak
+local_config.py
+static/
+example.db
+.idea/
+clients/*/swagger.json
+clients/*/dist
+.vscode
+.DS_Store
