@@ -65,6 +65,7 @@ class Config(object):
 
     SECRET_KEY = os.getenv("SECRET_KEY", "36bf368sll2349skk3f1165565e7c71")
 
+    ENABLED_MODULES = ['api']
     DEBUG = False
     TESTING = False
 

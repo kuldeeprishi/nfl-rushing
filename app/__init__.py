@@ -50,6 +50,9 @@ def create_app(config_name=None):
     from . import extensions
     extensions.init_app(app)
 
+    from . import modules
+    modules.init_app(app)
+
     return app
 
 app = create_app()
