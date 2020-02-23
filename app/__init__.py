@@ -62,3 +62,6 @@ app = create_app()
 def append_request_id(response):
     response.headers.add("X-REQUEST-ID", current_request_id())
     return response
+
+
+from .routes import *  #no-qa

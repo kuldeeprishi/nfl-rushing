@@ -1,14 +1,6 @@
 from flask_restx import reqparse
 
-# Pagination Parser
-pagination = reqparse.RequestParser()
-pagination.add_argument(
-    'page', type=int, required=False, default=1, help='Page number')
-pagination.add_argument(
-    'per_page', type=int, required=False, default=10, help='Results per page')
-
-
-nfl_filters = pagination.copy()
+nfl_filters = reqparse.RequestParser()
 
 nfl_filters.add_argument(
     'query', type=str, required=False,

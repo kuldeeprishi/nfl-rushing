@@ -18,9 +18,6 @@ from flask import request, current_app, Response
 from flask_restx import Namespace, Resource
 from .parser import nfl_filters
 from .models import NFL
-from .utils import get_paginated_data
-
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 api = Namespace('nfl', description="National Football League")
 
@@ -39,8 +36,6 @@ class NFLResource(Resource):
 
         args = nfl_filters.parse_args(request)
 
-        page = args.get("page")
-        per_page = args.get("per_page")
         query = args.get("query")
         query_by = args.get("query_by")
         sort_by = args.get("sort_by")
@@ -51,24 +46,14 @@ class NFLResource(Resource):
 
         if sort_by:
             reverse = sort == 'desc'
-            nfl_data = sorted(nfl_data,
-            key=lambda k: locale.atoi(str(k[sort_by])), reverse=reverse)
+            nfl_data = sorted(nfl_data, key=lambda k: getattr(k, sort_by), reverse=reverse)
 
+        data = [d.as_dict() for d in nfl_data]
         count = len(nfl_data)
-        total_pages = ceil(count / per_page)
-
-        if page != 1 and page > total_pages:
-            response['status'] = 'error'
-            response['message'] = f'Invalid Page Number: {page}'
-            return response, 400
-
-        data = get_paginated_data(nfl_data, page, per_page)
 
         response['status'] = 'success'
         response['message'] = f'found {count} events'
-        response['page'] = page
-        response['per_page'] = per_page
-        response['total_pages'] = total_pages
+        response['count'] = count
         response['data'] = data
 
         if output == 'csv':
