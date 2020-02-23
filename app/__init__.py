@@ -47,6 +47,9 @@ def create_app(config_name=None):
 
     RequestID(app, request_id_generator=lambda: f"NFL{uuid.uuid4().hex}")
 
+    from . import extensions
+    extensions.init_app(app)
+
     return app
 
 app = create_app()
