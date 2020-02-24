@@ -70,24 +70,28 @@
 
 
         function createTable(data) {
-            headers = Object.keys(data[0])
-            // create table header
-            tbl_header = ""
-            $.each(headers, function(idx, header) {
-                tbl_header += "<th>"+header+"</th>";
-            });
-            tbl_header = "<tr>" + tbl_header + "</tr>"
-            $("#table thead").html(tbl_header);
-
-            // create table body
-            var tbl_body = "";
-            $.each(data, function(idx, value) {
-                var tbl_row = "";
-                $.each(headers, function(idx, key) {
-                    tbl_row += "<td>"+value[key]+"</td>";
+            var tbl_header = ""
+            var tbl_body = ""
+            if (data.length > 0) {
+                headers = Object.keys(data[0])
+                // create table header
+                $.each(headers, function(idx, header) {
+                    tbl_header += "<th>"+header+"</th>";
                 });
-                tbl_body += "<tr>" + tbl_row + "</tr>"
-            });
+                tbl_header = "<tr>" + tbl_header + "</tr>"
+                $("#table thead").html(tbl_header);
+
+                // create table body
+
+                $.each(data, function(idx, value) {
+                    var tbl_row = "";
+                    $.each(headers, function(idx, key) {
+                        tbl_row += "<td>"+value[key]+"</td>";
+                    });
+                    tbl_body += "<tr>" + tbl_row + "</tr>"
+                });
+            }
+
             $("#table tbody").html(tbl_body);
         }
 

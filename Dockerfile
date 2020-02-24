@@ -6,7 +6,8 @@ LABEL Version 1.0.0
 LABEL RUN /usr/bin/docker -d IMAGE
 
 RUN apt-get update -y && \
-    apt-get install -y python3-pip locales
+    apt-get install -y python3-pip
+RUN apt-get install -y locales
 
 # We copy just the requirements.txt first to leverage Docker cache
 COPY ./requirements.txt /app/requirements.txt
