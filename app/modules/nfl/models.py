@@ -8,8 +8,7 @@ import json
 import locale
 from functools import total_ordering
 
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
-
+locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
 
 class NFL:
     def __init__(self):

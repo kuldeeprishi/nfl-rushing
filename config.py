@@ -3,19 +3,7 @@ import socket
 import logging
 from pathlib import Path
 
-from dotenv import load_dotenv
-
 from flask_log_request_id import RequestIDLogFilter
-
-
-ENV_FILE_PATH = os.getenv("ENV_FILE_PATH", ".")
-if ENV_FILE_PATH:
-    config_file_path = Path(ENV_FILE_PATH).joinpath(".env")
-    print(f"Loading config from {config_file_path}")
-    load_dotenv(dotenv_path=config_file_path)
-else:
-    print(f"`ENV_FILE_PATH` not specified. Loading defaults")
-
 
 
 class Config(object):
